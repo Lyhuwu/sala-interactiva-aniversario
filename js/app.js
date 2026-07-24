@@ -15,6 +15,7 @@ import { StoryController } from "./story-controller.js";
 import { AmbientController } from "./ambient-controller.js";
 import { InteractionController } from "./interactions.js";
 import { DebugController } from "./debug-controller.js";
+import { loadAndApplyPositions } from "./positions-loader.js";
 
 const app = document.getElementById("app");
 const stage = document.getElementById("scene-stage");
@@ -87,6 +88,12 @@ function revealScene() {
 }
 
 async function initialize() {
+  const positionsState = await loadAndApplyPositions({
+    path: SCENE_CONFIG.positionsPath,
+    objectConfigs: OBJECTS_CONFIG,
+    sceneConfig: SCENE_CONFIG
+  });
+
   createObjectElements();
   resizeScene();
   window.addEventListener("resize", resizeScene, { passive: true });
@@ -128,7 +135,8 @@ async function initialize() {
       debugController,
       animationEngine,
       assetLoader,
-      objects: OBJECTS_CONFIG
+      objects: OBJECTS_CONFIG,
+      positionsState
     };
     return;
   }
@@ -199,7 +207,8 @@ async function initialize() {
     animationEngine,
     assetLoader,
     runtimeLock,
-    objects: OBJECTS_CONFIG
+    objects: OBJECTS_CONFIG,
+    positionsState
   };
 }
 

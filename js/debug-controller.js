@@ -44,7 +44,7 @@ export class DebugController {
     this.applyAllPositions();
 
     if (this.selectedId) this.selectObject(this.selectedId);
-    this.setStatus("Arrastra un objeto o usa los controles. Los cambios se guardan solo para este modo debug.");
+    this.setStatus("Arrastra un objeto o usa los controles. Al terminar, descarga positions.json y reemplaza assets/config/positions.json.");
   }
 
   loadInitialPositions() {
@@ -188,7 +188,7 @@ export class DebugController {
 
     this.drag = null;
     this.savePositions();
-    this.setStatus("Posición guardada en el navegador. Copia los valores para pasarlos a objects-config.js.");
+    this.setStatus("Posición guardada en el navegador. Al terminar, descarga positions.json.");
   }
 
   clientToScene(clientX, clientY) {
@@ -314,7 +314,7 @@ export class DebugController {
     this.applyPosition(this.selectedId);
     this.refreshInputs();
     this.savePositions();
-    this.setStatus("El objeto seleccionado volvió a los valores originales del código.");
+    this.setStatus("El objeto seleccionado volvió a la posición guardada en assets/config/positions.json.");
   }
 
   resetAll() {
@@ -324,7 +324,7 @@ export class DebugController {
     this.applyAllPositions();
     this.refreshInputs();
     localStorage.removeItem(DEBUG_STORAGE_KEY);
-    this.setStatus("Todas las posiciones debug volvieron a los valores originales.");
+    this.setStatus("Todas las posiciones volvieron a los valores de assets/config/positions.json.");
   }
 
   savePositions() {
@@ -336,21 +336,27 @@ export class DebugController {
     }
   }
 
+  buildPayload() {
+    return {
+      schemaVersion: 1,
+      logicalScene: {
+        width: this.sceneConfig.logicalWidth,
+        height: this.sceneConfig.logicalHeight
+      },
+      positions: Object.fromEntries(this.positions.entries())
+    };
+  }
+
   formatSingle(objectId) {
     const object = this.objectMap.get(objectId);
     const position = this.positions.get(objectId);
     if (!object || !position) return "";
 
-    return `${object.id}: position: { x: ${position.x}, y: ${position.y}, width: ${position.width}, zIndex: ${position.zIndex} }`;
+    return JSON.stringify({ [object.id]: position }, null, 2);
   }
 
   formatAll() {
-    return this.objects
-      .map((object) => {
-        const p = this.positions.get(object.id);
-        return `${object.id}: { x: ${p.x}, y: ${p.y}, width: ${p.width}, zIndex: ${p.zIndex} }`;
-      })
-      .join("\n");
+    return JSON.stringify(this.buildPayload(), null, 2);
   }
 
   async copyText(text, successMessage) {
@@ -375,23 +381,17 @@ export class DebugController {
   }
 
   downloadJson() {
-    const payload = {
-      logicalScene: {
-        width: this.sceneConfig.logicalWidth,
-        height: this.sceneConfig.logicalHeight
-      },
-      positions: Object.fromEntries(this.positions.entries())
-    };
+    const payload = this.buildPayload();
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "posiciones-sala-debug.json";
+    anchor.download = "positions.json";
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();
     URL.revokeObjectURL(url);
-    this.setStatus("Se descargó posiciones-sala-debug.json.");
+    this.setStatus("Se descargó positions.json. Reemplázalo en assets/config/positions.json.");
   }
 
   setStatus(message) {

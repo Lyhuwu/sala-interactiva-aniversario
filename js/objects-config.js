@@ -19,6 +19,7 @@ export const SCENE_CONFIG = Object.freeze({
   logicalWidth: 1080,
   logicalHeight: 1920,
   background: "./assets/fondo/fondoestatico.png",
+  positionsPath: "./assets/config/positions.json",
   storageKey: "sala-interactiva-progress-v1",
   attention: {
     minDelay: 6000,
@@ -71,8 +72,8 @@ function contentImage(objectId, title, text = "") {
 
 /*
   IMPORTANTE:
-  - Las posiciones actuales sirven para probar la base con los recursos de muestra.
-  - Cuando tengas tu fondo y tus dibujos finales, cambia x, y y width aquí.
+  - Las posiciones ya no se guardan en este archivo.
+  - Edita assets/config/positions.json o reemplázalo por el JSON descargado desde ?debug=1.
   - Todos los frames de un mismo objeto deben conservar el mismo lienzo interno.
   - Si una secuencia no tiene frames, usa frames: [] y el motor la omitirá.
 */
@@ -82,7 +83,6 @@ export const OBJECTS_CONFIG = [
     label: "Pingüinos",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-pinwis",
-    position: { x: 100, y: 1390, width: 300, zIndex: 40 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("pinwis", "idle", "idle", 2), [700, 700], { loop: true }),
@@ -102,7 +102,6 @@ export const OBJECTS_CONFIG = [
     label: "Pajaritos",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-pajaritos",
-    position: { x: 625, y: 270, width: 300, zIndex: 35 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("pajaritos", "idle", "idle", 2), [650, 650], { loop: true }),
@@ -122,7 +121,6 @@ export const OBJECTS_CONFIG = [
     label: "Calendario",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-calendario",
-    position: { x: 80, y: 280, width: 220, zIndex: 30 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("calendario", "idle", "idle", 1), [1000], { loop: true }),
@@ -142,7 +140,6 @@ export const OBJECTS_CONFIG = [
     label: "Televisión",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-tele",
-    position: { x: 575, y: 720, width: 380, zIndex: 32 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("tele", "idle", "idle", 1), [1000], { loop: true }),
@@ -162,7 +159,6 @@ export const OBJECTS_CONFIG = [
     label: "Marco",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-marco",
-    position: { x: 110, y: 675, width: 285, zIndex: 31 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("marco", "idle", "idle", 1), [1000], { loop: true }),
@@ -188,7 +184,6 @@ export const OBJECTS_CONFIG = [
     label: "Pollitos",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-pollitos",
-    position: { x: 310, y: 1510, width: 455, zIndex: 42 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("pollitos", "idle", "idle", 2), [650, 650], { loop: true }),
@@ -208,7 +203,6 @@ export const OBJECTS_CONFIG = [
     label: "Sobre",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-sobre",
-    position: { x: 780, y: 1680, width: 220, zIndex: 45 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
       idle: sequence(numberedFrames("sobre", "idle", "idle", 1), [1000], { loop: true }),
@@ -230,7 +224,6 @@ export const OBJECTS_CONFIG = [
     label: "Planta",
     category: OBJECT_CATEGORY.AMBIENT,
     elementId: "object-planta",
-    position: { x: 35, y: 1050, width: 245, zIndex: 25 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     ambient: {
       mode: "interactive",
@@ -255,7 +248,6 @@ export const OBJECTS_CONFIG = [
     label: "Perrito",
     category: OBJECT_CATEGORY.AMBIENT,
     elementId: "object-perrito",
-    position: { x: 660, y: 1335, width: 300, zIndex: 41 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     ambient: {
       mode: "interactive",
@@ -286,7 +278,6 @@ export const OBJECTS_CONFIG = [
     label: "Tocadiscos",
     category: OBJECT_CATEGORY.AMBIENT,
     elementId: "object-tocadiscos",
-    position: { x: 655, y: 1035, width: 315, zIndex: 36 },
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     ambient: {
       mode: "persistentAudio",

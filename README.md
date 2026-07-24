@@ -21,6 +21,7 @@ Incluye:
 - Pantalla de carga.
 - Modales para cartas, fotos y diálogos.
 - Adaptación proporcional de una escena lógica de 1080 × 1920.
+- Posiciones separadas en `assets/config/positions.json`.
 
 ## Flujo narrativo configurado
 
@@ -219,14 +220,20 @@ No repitas una imagen idéntica para hacerla durar más. Aumenta su duración.
 
 ### 4. Posiciones
 
-En cada objeto modifica:
+Las posiciones están separadas del resto de la configuración. Abre:
 
-```js
-position: {
-  x: 100,
-  y: 1390,
-  width: 300,
-  zIndex: 40
+```text
+assets/config/positions.json
+```
+
+Cada objeto tiene un bloque como:
+
+```json
+"pinwis": {
+  "x": 100,
+  "y": 1390,
+  "width": 300,
+  "zIndex": 40
 }
 ```
 
@@ -234,6 +241,14 @@ position: {
 - `y`: posición vertical dentro de 1920.
 - `width`: ancho mostrado.
 - `zIndex`: qué objeto aparece encima cuando se superponen.
+
+No añadas comentarios dentro del JSON. Debe conservar comas y comillas válidas.
+
+La forma recomendada es abrir `?debug=1`, acomodar los objetos y pulsar `Descargar JSON`. El archivo descargado se llama `positions.json` y puede reemplazar directamente a:
+
+```text
+assets/config/positions.json
+```
 
 ### 5. Cartas
 
@@ -275,7 +290,9 @@ El audio nunca se inicia solo. Esto es necesario para que funcione en navegadore
 ```text
 index.html
 css/styles.css
+assets/config/positions.json
 js/objects-config.js
+js/positions-loader.js
 js/asset-loader.js
 js/animation-engine.js
 js/runtime-lock.js
@@ -288,9 +305,17 @@ js/interactions.js
 js/app.js
 ```
 
+### `assets/config/positions.json`
+
+Contiene únicamente `x`, `y`, `width` y `zIndex` de cada objeto. Es el archivo que reemplazas con el descargado desde el modo debug.
+
 ### `objects-config.js`
 
-Contiene orden, posiciones, rutas, frames, duraciones, cartas y tipos de objeto.
+Contiene orden, rutas, frames, duraciones, cartas, efectos y tipos de objeto. Ya no contiene posiciones.
+
+### `positions-loader.js`
+
+Carga `assets/config/positions.json`, valida sus números y aplica las posiciones antes de crear los objetos.
 
 ### `asset-loader.js`
 
@@ -430,24 +455,36 @@ El objeto seleccionado aparece rodeado por una línea amarilla.
 - Flechas: mueven el objeto con precisión.
 - `− Ancho` y `+ Ancho`: reducen o aumentan el tamaño.
 - `− Capa` y `+ Capa`: cambian qué objeto aparece encima.
-- `Copiar objeto`: copia la línea del objeto seleccionado.
-- `Copiar todos`: copia todas las posiciones.
-- `Descargar JSON`: descarga un respaldo con todas las posiciones.
-- `Restaurar objeto`: recupera los valores escritos actualmente en `objects-config.js`.
-- `Restaurar todos`: elimina todas las posiciones guardadas por el modo debug.
+- `Copiar objeto`: copia un fragmento JSON del objeto seleccionado.
+- `Copiar todos`: copia el contenido completo válido de `positions.json`.
+- `Descargar JSON`: descarga `positions.json` listo para sustituir el archivo del proyecto.
+- `Restaurar objeto`: recupera la posición guardada actualmente en `assets/config/positions.json`.
+- `Restaurar todos`: elimina los ajustes temporales del navegador y vuelve a las posiciones del JSON publicado.
 
-Ejemplo de texto copiado:
-
-```text
-pinwis: position: { x: 100, y: 1390, width: 300, zIndex: 40 }
-```
-
-Después debes copiar esos números manualmente en:
+El flujo recomendado es:
 
 ```text
-js/objects-config.js
+1. Acomodar todos los objetos en ?debug=1.
+2. Pulsar Descargar JSON.
+3. Conservar el nombre positions.json.
+4. Reemplazar assets/config/positions.json dentro del proyecto.
+5. Hacer git add, commit y push.
 ```
 
-El modo debug no puede editar por sí solo el archivo alojado en GitHub. Guarda temporalmente los cambios en `localStorage` y te entrega los valores exactos para copiarlos.
+El modo debug no puede escribir directamente dentro de GitHub. Mientras acomodas, guarda temporalmente los cambios en `localStorage`; el archivo descargado convierte esos cambios en la configuración definitiva.
+
+### Reemplazar `positions.json` desde Termux
+
+Si Chrome descargó el archivo en `Download`, desde la carpeta del proyecto en Termux puedes usar:
+
+```bash
+cd ~/sala-interactiva-aniversario
+cp /storage/emulated/0/Download/positions.json assets/config/positions.json
+git add assets/config/positions.json
+git commit -m "Actualizar posiciones de objetos"
+git push
+```
+
+Si Android creó `positions (1).json` o un nombre parecido, utiliza ese nombre exacto en el comando `cp`.
 
 Para volver a la experiencia normal, elimina `?debug=1` de la dirección.

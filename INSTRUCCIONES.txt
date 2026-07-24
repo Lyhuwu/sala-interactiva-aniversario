@@ -1,0 +1,14 @@
+ACTUALIZACIÓN: POSICIONES SEPARADAS
+
+Copia estas carpetas sobre tu proyecto existente conservando las rutas.
+
+Archivos esenciales:
+- assets/config/positions.json
+- js/objects-config.js
+- js/positions-loader.js
+- js/app.js
+- js/debug-controller.js
+
+Después abre ?debug=1, acomoda todo y pulsa Descargar JSON.
+El archivo descargado se llama positions.json y reemplaza directamente:
+assets/config/positions.json
