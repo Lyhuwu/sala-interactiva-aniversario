@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#21182c">
+  <title>Nuestra sala</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <main id="app" aria-busy="true">
+    <section id="loading-screen" class="loading-screen" aria-live="polite">
+      <div class="loading-card">
+        <div class="loading-heart" aria-hidden="true">♡</div>
+        <p id="loading-message">Preparando la sala…</p>
+        <div class="loading-track" aria-hidden="true">
+          <div id="loading-bar" class="loading-bar"></div>
+        </div>
+        <p id="loading-percentage" class="loading-percentage">0%</p>
+      </div>
+    </section>
+
+    <section id="scene-viewport" class="scene-viewport" aria-label="Sala interactiva">
+      <div id="scene-stage" class="scene-stage" hidden>
+        <img id="room-background" class="room-background" alt="Ilustración de una sala">
+        <div id="objects-layer" class="objects-layer" aria-label="Objetos interactivos"></div>
+        <canvas id="effects-layer" class="effects-layer" width="1080" height="1920" aria-hidden="true"></canvas>
+      </div>
+    </section>
+
+    <div id="modal-layer" class="modal-layer" hidden>
+      <div id="modal-backdrop" class="modal-backdrop"></div>
+      <section id="content-modal" class="content-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
+        <h2 id="modal-title" class="modal-title"></h2>
+        <img id="modal-image" class="modal-image" alt="" hidden>
+        <div id="modal-text" class="modal-text"></div>
+      </section>
+    </div>
+
+    <aside id="debug-panel" class="debug-panel" aria-label="Herramientas para acomodar objetos" hidden>
+      <header class="debug-header">
+        <div>
+          <strong>Modo acomodo</strong>
+          <small>Escena 1080 × 1920</small>
+        </div>
+        <button id="debug-toggle" class="debug-toggle" type="button" aria-expanded="true">Ocultar</button>
+      </header>
+
+      <div id="debug-body" class="debug-body">
+        <label class="debug-field debug-field-wide">
+          <span>Objeto</span>
+          <select id="debug-object-select"></select>
+        </label>
+
+        <div class="debug-values">
+          <label class="debug-field"><span>X</span><input id="debug-x" type="number" inputmode="numeric"></label>
+          <label class="debug-field"><span>Y</span><input id="debug-y" type="number" inputmode="numeric"></label>
+          <label class="debug-field"><span>Ancho</span><input id="debug-width" type="number" inputmode="numeric" min="20"></label>
+          <label class="debug-field"><span>Capa</span><input id="debug-z" type="number" inputmode="numeric" min="0"></label>
+        </div>
+
+        <div class="debug-step-row">
+          <label class="debug-field debug-step-field">
+            <span>Paso</span>
+            <select id="debug-step">
+              <option value="1">1 px</option>
+              <option value="5" selected>5 px</option>
+              <option value="10">10 px</option>
+              <option value="25">25 px</option>
+            </select>
+          </label>
+          <span class="debug-hint">También puedes arrastrar el dibujo.</span>
+        </div>
+
+        <div class="debug-controls" aria-label="Mover objeto">
+          <button type="button" data-debug-action="up" aria-label="Mover arriba">↑</button>
+          <button type="button" data-debug-action="left" aria-label="Mover izquierda">←</button>
+          <button type="button" data-debug-action="down" aria-label="Mover abajo">↓</button>
+          <button type="button" data-debug-action="right" aria-label="Mover derecha">→</button>
+        </div>
+
+        <div class="debug-actions debug-actions-two">
+          <button type="button" data-debug-action="smaller">− Ancho</button>
+          <button type="button" data-debug-action="larger">+ Ancho</button>
+          <button type="button" data-debug-action="z-down">− Capa</button>
+          <button type="button" data-debug-action="z-up">+ Capa</button>
+        </div>
+
+        <div class="debug-actions">
+          <button type="button" data-debug-action="copy-selected">Copiar objeto</button>
+          <button type="button" data-debug-action="copy-all">Copiar todos</button>
+          <button type="button" data-debug-action="download-json">Descargar JSON</button>
+        </div>
+
+        <div class="debug-actions debug-actions-danger">
+          <button type="button" data-debug-action="reset-selected">Restaurar objeto</button>
+          <button type="button" data-debug-action="reset-all">Restaurar todos</button>
+        </div>
+
+        <p id="debug-status" class="debug-status" role="status" aria-live="polite"></p>
+      </div>
+    </aside>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <p id="live-region" class="sr-only" aria-live="polite"></p>
+  </main>
+
+  <noscript>Esta experiencia necesita JavaScript para funcionar.</noscript>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
