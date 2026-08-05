@@ -500,11 +500,11 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* Aura para objetos sin una llamada de atención muy visible */
+/* Aura fuerte para marco, calendario y sobre */
 #object-marco[data-status="attention"],
 #object-calendario[data-status="attention"],
 #object-sobre[data-status="attention"] {
-  animation: auraAtencion 900ms ease-in-out infinite;
+  animation: auraAtencion 750ms ease-in-out infinite;
   will-change: filter;
 }
 
@@ -512,13 +512,16 @@ button {
   0%,
   100% {
     filter:
-      drop-shadow(0 0 0 rgba(255, 239, 166, 0))
-      drop-shadow(0 0 0 rgba(255, 176, 216, 0));
+      drop-shadow(0 0 8px rgba(255, 247, 171, 0.55))
+      drop-shadow(0 0 20px rgba(255, 126, 200, 0.42));
   }
 
   50% {
     filter:
-      drop-shadow(0 0 16px rgba(255, 239, 166, 0.95))
-      drop-shadow(0 0 38px rgba(255, 176, 216, 0.78));
+      drop-shadow(0 0 12px rgba(255, 255, 210, 1))
+      drop-shadow(0 0 30px rgba(255, 224, 104, 1))
+      drop-shadow(0 0 58px rgba(255, 92, 190, 0.95))
+      drop-shadow(0 0 90px rgba(255, 92, 190, 0.78))
+      brightness(1.12);
   }
 }
