@@ -224,8 +224,15 @@ export const OBJECTS_CONFIG = [
       guiando: emptySequence(),
 
       regresoIdle: sequence([
-        finalFrame("tele", "tele_base_01.png")
-      ], [500])
+  finalFrame("tele", "tele_evento_03.png"),
+  finalFrame("tele", "tele_evento_04.png"),
+  finalFrame("tele", "tele_evento_05.png"),
+  finalFrame("tele", "tele_evento_02.png"),
+  finalFrame("tele", "tele_atencion_04.png"),
+  finalFrame("tele", "tele_idle_03.png"),
+  finalFrame("tele", "tele_idle_02.png"),
+  finalFrame("tele", "tele_base_01.png")
+], [2600, 220, 260, 260, 110, 170, 150, 650])
     },
     interaction: {
       replayable: true,
