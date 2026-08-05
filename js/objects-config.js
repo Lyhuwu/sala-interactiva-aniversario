@@ -207,15 +207,16 @@ export const OBJECTS_CONFIG = [
       ], [140, 150, 190, 90, 190, 150, 700]),
 
       evento: sequence([
-        finalFrame("tele", "tele_base_01.png"),
-        finalFrame("tele", "tele_idle_02.png"),
-        finalFrame("tele", "tele_idle_03.png"),
-        finalFrame("tele", "tele_atencion_04.png"),
-        finalFrame("tele", "tele_evento_02.png"),
-        finalFrame("tele", "tele_evento_03.png"),
-        finalFrame("tele", "tele_evento_04.png"),
-        finalFrame("tele", "tele_evento_05.png")
-      ], [140, 150, 190, 90, 500, 800, 1400, 4500]),
+  finalFrame("tele", "tele_base_01.png"),
+  finalFrame("tele", "tele_idle_02.png"),
+  finalFrame("tele", "tele_idle_03.png"),
+  finalFrame("tele", "tele_atencion_04.png"),
+  finalFrame("tele", "tele_evento_02.png"),
+  finalFrame("tele", "tele_evento_03.png"),
+  finalFrame("tele", "tele_evento_04.png"),
+  finalFrame("tele", "tele_evento_05.png"),
+  finalFrame("tele", "tele_evento_03.png")
+], [140, 150, 190, 90, 500, 700, 350, 350, 4500]),
 
       guiando: emptySequence(),
 
