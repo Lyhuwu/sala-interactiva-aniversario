@@ -242,13 +242,13 @@ export class StoryController {
     }
 
     if (completedSuccessfully) {
-      if (this.isComplete) {
-        await this.modalController.showToast(this.sceneConfig.finalMessage, 3600);
-      } else {
-        this.scheduleAttention(1000);
-      }
-    } else {
-      this.scheduleAttention(1000);
+  if (this.isComplete) {
+    await this.modalController.showToast(this.sceneConfig.finalMessage, 3600);
+  } else {
+    this.scheduleAttention(objectId === "pajaritos" ? null : 1000);
+  }
+} else {
+  this.scheduleAttention(1000);
     }
   }
 
