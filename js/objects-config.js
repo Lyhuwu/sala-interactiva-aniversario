@@ -168,16 +168,20 @@ export const OBJECTS_CONFIG = [
         finalFrame("pajaritos", "pajaritos_evento_06.png")
       ], [180, 180, 260, 220, 450, 1100]),
 
-      guiando: emptySequence(),
+      guiando: sequence([
+  finalFrame("pajaritos", "pajaritos_evento_06.png"),
+  finalFrame("pajaritos", "pajaritos_idle_03.png")
+], [480, 1130]),
 
       regresoIdle: sequence([
         finalFrame("pajaritos", "pajaritos_base_01.png")
       ], [450])
     },
     interaction: {
-      replayable: true,
-      effect: "hearts",
-      content: contentImage("pajaritos", "Una pequeña carta")
+  replayable: true,
+  effect: "hearts",
+  handoffAttentionTo: "tele",
+  content: contentImage("pajaritos", "Una pequeña carta")
     }
   },
 
