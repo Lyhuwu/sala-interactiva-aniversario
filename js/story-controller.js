@@ -199,24 +199,7 @@ export class StoryController {
         await this.modalController.open(object.interaction.content);
       }
 
-      if (this.animationEngine.hasAnimation(objectId, "guiando")) {
-  this.setStatus(objectId, OBJECT_STATUS.GUIDING);
-
-  const handoffObjectId = object.interaction?.handoffAttentionTo;
-
-  const hasSynchronizedHandoff =
-    handoffObjectId &&
-    this.animationEngine.hasAnimation(handoffObjectId, "atencion");
-
-  if (hasSynchronizedHandoff) {
-    this.setStatus(handoffObjectId, OBJECT_STATUS.ATTENTION);
-
-    await Promise.all([
-      this.animationEngine.play(objectId, "guiando"),
-      this.animationEngine.play(handoffObjectId, "atencion")
-    ]);
-
-          if (this.animationEngine.hasAnimation(objectId, "guiando")) {
+            if (this.animationEngine.hasAnimation(objectId, "guiando")) {
         this.setStatus(objectId, OBJECT_STATUS.GUIDING);
 
         const handoffObjectId = object.interaction?.handoffAttentionTo;
