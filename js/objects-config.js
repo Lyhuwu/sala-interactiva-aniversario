@@ -215,7 +215,7 @@ export const OBJECTS_CONFIG = [
         finalFrame("tele", "tele_evento_03.png"),
         finalFrame("tele", "tele_evento_04.png"),
         finalFrame("tele", "tele_evento_05.png")
-      ], [140, 150, 190, 90, 260, 320, 420, 1100]),
+      ], [140, 150, 190, 90, 500, 800, 1400, 4500]),
 
       guiando: emptySequence(),
 
