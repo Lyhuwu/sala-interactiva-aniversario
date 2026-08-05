@@ -200,8 +200,28 @@ export class StoryController {
       }
 
       if (this.animationEngine.hasAnimation(objectId, "guiando")) {
-        this.setStatus(objectId, OBJECT_STATUS.GUIDING);
-        await this.animationEngine.play(objectId, "guiando");
+  this.setStatus(objectId, OBJECT_STATUS.GUIDING);
+
+  const handoffObjectId = object.interaction?.handoffAttentionTo;
+
+  const hasSynchronizedHandoff =
+    handoffObjectId &&
+    this.animationEngine.hasAnimation(handoffObjectId, "atencion");
+
+  if (hasSynchronizedHandoff) {
+    this.setStatus(handoffObjectId, OBJECT_STATUS.ATTENTION);
+
+    await Promise.all([
+      this.animationEngine.play(objectId, "guiando"),
+      this.animationEngine.play(handoffObjectId, "atencion")
+    ]);
+
+    this.animationEngine.showIdle(handoffObjectId);
+    this.setStatus(handoffObjectId, OBJECT_STATUS.LOCKED);
+  } else {
+    await this.animationEngine.play(objectId, "guiando");
+  }
+      }
       }
 
       this.setStatus(objectId, OBJECT_STATUS.RETURNING);
