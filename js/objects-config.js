@@ -20,10 +20,10 @@ export const SCENE_CONFIG = Object.freeze({
   logicalHeight: 1920,
   background: "./assets/fondo/fondoestatico.png",
   positionsPath: "./assets/config/positions.json",
-  storageKey: "sala-interactiva-progress-v1",
+  storageKey: "sala-interactiva-progress-v2",
   attention: {
-    minDelay: 6000,
-    maxDelay: 10000,
+    minDelay: 4200,
+    maxDelay: 6800,
     retryAfterWrongPath: 450
   },
   wrongPathMessages: [
@@ -37,9 +37,9 @@ export const SCENE_CONFIG = Object.freeze({
 export const STORY_ORDER = Object.freeze([
   "pinwis",
   "pajaritos",
-  "calendario",
   "tele",
   "marco",
+  "calendario",
   "pollitos",
   "sobre"
 ]);
@@ -51,7 +51,15 @@ function numberedFrames(objectId, folder, fileToken, count) {
   });
 }
 
+function finalFrame(objectFolder, fileName) {
+  return `./assets/objetos/${objectFolder}/finales/${fileName}`;
+}
+
 function sequence(frames, durations, options = {}) {
+  if (frames.length !== durations.length) {
+    throw new Error(`Secuencia inválida: ${frames.length} frames y ${durations.length} duraciones.`);
+  }
+
   return {
     frames,
     durations,
@@ -70,26 +78,52 @@ function contentImage(objectId, title, text = "") {
   };
 }
 
-/*
-  IMPORTANTE:
-  - Las posiciones ya no se guardan en este archivo.
-  - Edita assets/config/positions.json o reemplázalo por el JSON descargado desde ?debug=1.
-  - Todos los frames de un mismo objeto deben conservar el mismo lienzo interno.
-  - Si una secuencia no tiene frames, usa frames: [] y el motor la omitirá.
-*/
+const emptySequence = () => sequence([], []);
+
 export const OBJECTS_CONFIG = [
   {
     id: "pinwis",
-    label: "Pingüinos",
+    label: "Pinwi",
     category: OBJECT_CATEGORY.STORY,
     elementId: "object-pinwis",
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
-      idle: sequence(numberedFrames("pinwis", "idle", "idle", 2), [700, 700], { loop: true }),
-      atencion: sequence(numberedFrames("pinwis", "atencion", "atencion", 3), [130, 130, 190]),
-      evento: sequence(numberedFrames("pinwis", "evento", "evento", 3), [180, 180, 420]),
-      guiando: sequence(numberedFrames("pinwis", "guiando", "guiando", 2), [240, 420]),
-      regresoIdle: sequence(numberedFrames("pinwis", "regreso_idle", "regreso_idle", 2), [180, 240])
+      idle: sequence([
+        finalFrame("pinwis", "pinwi_base_01.png"),
+        finalFrame("pinwis", "pinwi_idle_02.png"),
+        finalFrame("pinwis", "pinwi_idle_03.png"),
+        finalFrame("pinwis", "pinwi_base_01.png")
+      ], [7000, 180, 240, 1400], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("pinwis", "pinwi_base_01.png"),
+        finalFrame("pinwis", "pinwi_atencion_02.png"),
+        finalFrame("pinwis", "pinwi_atencion_03.png"),
+        finalFrame("pinwis", "pinwi_base_01.png")
+      ], [180, 220, 420, 650]),
+
+      evento: sequence([
+        finalFrame("pinwis", "pinwi_base_01.png"),
+        finalFrame("pinwis", "pinwi_evento_02.png"),
+        finalFrame("pinwis", "pinwi_evento_03.png"),
+        finalFrame("pinwis", "pinwi_evento_04.png"),
+        finalFrame("pinwis", "pinwi_evento_05.png"),
+        finalFrame("pinwis", "pinwi_evento_06.png"),
+        finalFrame("pinwis", "pinwi_evento_07.png")
+      ], [200, 220, 220, 240, 300, 520, 900]),
+
+      guiando: sequence([
+        finalFrame("pinwis", "pinwi_evento_07.png"),
+        finalFrame("pinwis", "pinwi_final_02.png"),
+        finalFrame("pinwis", "pinwi_final_03.png"),
+        finalFrame("pinwis", "pinwi_final_04.png"),
+        finalFrame("pinwis", "pinwi_final_05.png"),
+        finalFrame("pinwis", "pinwi_base_01.png")
+      ], [300, 260, 260, 420, 900, 550]),
+
+      regresoIdle: sequence([
+        finalFrame("pinwis", "pinwi_base_01.png")
+      ], [350])
     },
     interaction: {
       replayable: true,
@@ -97,6 +131,7 @@ export const OBJECTS_CONFIG = [
       content: contentImage("pinwis", "Para ti, mi amor")
     }
   },
+
   {
     id: "pajaritos",
     label: "Pajaritos",
@@ -104,11 +139,40 @@ export const OBJECTS_CONFIG = [
     elementId: "object-pajaritos",
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
-      idle: sequence(numberedFrames("pajaritos", "idle", "idle", 2), [650, 650], { loop: true }),
-      atencion: sequence(numberedFrames("pajaritos", "atencion", "atencion", 3), [130, 130, 200]),
-      evento: sequence(numberedFrames("pajaritos", "evento", "evento", 3), [170, 170, 430]),
-      guiando: sequence(numberedFrames("pajaritos", "guiando", "guiando", 2), [230, 430]),
-      regresoIdle: sequence(numberedFrames("pajaritos", "regreso_idle", "regreso_idle", 2), [170, 250])
+      idle: sequence([
+        finalFrame("pajaritos", "pajaritos_base_01.png"),
+        finalFrame("pajaritos", "pajaritos_idle_02.png"),
+        finalFrame("pajaritos", "pajaritos_idle_03.png"),
+        finalFrame("pajaritos", "pajaritos_idle_02.png"),
+        finalFrame("pajaritos", "pajaritos_base_01.png")
+      ], [9400, 180, 300, 180, 1600], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("pajaritos", "pajaritos_base_01.png"),
+        finalFrame("pajaritos", "pajaritos_idle_02.png"),
+        finalFrame("pajaritos", "pajaritos_idle_03.png"),
+        finalFrame("pajaritos", "pajaritos_atencion_02.png"),
+        finalFrame("pajaritos", "pajaritos_atencion_03.png"),
+        finalFrame("pajaritos", "pajaritos_atencion_02.png"),
+        finalFrame("pajaritos", "pajaritos_idle_03.png"),
+        finalFrame("pajaritos", "pajaritos_idle_02.png"),
+        finalFrame("pajaritos", "pajaritos_base_01.png")
+      ], [160, 180, 260, 220, 650, 220, 250, 180, 650]),
+
+      evento: sequence([
+        finalFrame("pajaritos", "pajaritos_base_01.png"),
+        finalFrame("pajaritos", "pajaritos_idle_02.png"),
+        finalFrame("pajaritos", "pajaritos_idle_03.png"),
+        finalFrame("pajaritos", "pajaritos_atencion_02.png"),
+        finalFrame("pajaritos", "pajaritos_atencion_03.png"),
+        finalFrame("pajaritos", "pajaritos_evento_06.png")
+      ], [180, 180, 260, 220, 450, 1100]),
+
+      guiando: emptySequence(),
+
+      regresoIdle: sequence([
+        finalFrame("pajaritos", "pajaritos_base_01.png")
+      ], [450])
     },
     interaction: {
       replayable: true,
@@ -116,25 +180,7 @@ export const OBJECTS_CONFIG = [
       content: contentImage("pajaritos", "Una pequeña carta")
     }
   },
-  {
-    id: "calendario",
-    label: "Calendario",
-    category: OBJECT_CATEGORY.STORY,
-    elementId: "object-calendario",
-    hitTest: { mode: "alpha", alphaThreshold: 18 },
-    animations: {
-      idle: sequence(numberedFrames("calendario", "idle", "idle", 1), [1000], { loop: true }),
-      atencion: sequence(numberedFrames("calendario", "atencion", "atencion", 3), [150, 150, 220]),
-      evento: sequence(numberedFrames("calendario", "evento", "evento", 3), [160, 180, 480]),
-      guiando: sequence(numberedFrames("calendario", "guiando", "guiando", 2), [250, 430]),
-      regresoIdle: sequence(numberedFrames("calendario", "regreso_idle", "regreso_idle", 2), [180, 260])
-    },
-    interaction: {
-      replayable: true,
-      effect: "confetti",
-      content: contentImage("calendario", "Nuestra fecha especial")
-    }
-  },
+
   {
     id: "tele",
     label: "Televisión",
@@ -142,11 +188,40 @@ export const OBJECTS_CONFIG = [
     elementId: "object-tele",
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
-      idle: sequence(numberedFrames("tele", "idle", "idle", 1), [1000], { loop: true }),
-      atencion: sequence(numberedFrames("tele", "atencion", "atencion", 3), [100, 100, 220]),
-      evento: sequence(numberedFrames("tele", "evento", "evento", 4), [170, 150, 230, 650]),
-      guiando: sequence(numberedFrames("tele", "guiando", "guiando", 3), [180, 180, 500]),
-      regresoIdle: sequence(numberedFrames("tele", "regreso_idle", "regreso_idle", 2), [200, 300])
+      idle: sequence([
+        finalFrame("tele", "tele_base_01.png"),
+        finalFrame("tele", "tele_idle_02.png"),
+        finalFrame("tele", "tele_idle_03.png"),
+        finalFrame("tele", "tele_idle_02.png"),
+        finalFrame("tele", "tele_base_01.png")
+      ], [13200, 140, 190, 140, 1800], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("tele", "tele_base_01.png"),
+        finalFrame("tele", "tele_idle_02.png"),
+        finalFrame("tele", "tele_idle_03.png"),
+        finalFrame("tele", "tele_atencion_04.png"),
+        finalFrame("tele", "tele_idle_03.png"),
+        finalFrame("tele", "tele_idle_02.png"),
+        finalFrame("tele", "tele_base_01.png")
+      ], [140, 150, 190, 90, 190, 150, 700]),
+
+      evento: sequence([
+        finalFrame("tele", "tele_base_01.png"),
+        finalFrame("tele", "tele_idle_02.png"),
+        finalFrame("tele", "tele_idle_03.png"),
+        finalFrame("tele", "tele_atencion_04.png"),
+        finalFrame("tele", "tele_evento_02.png"),
+        finalFrame("tele", "tele_evento_03.png"),
+        finalFrame("tele", "tele_evento_04.png"),
+        finalFrame("tele", "tele_evento_05.png")
+      ], [140, 150, 190, 90, 260, 320, 420, 1100]),
+
+      guiando: emptySequence(),
+
+      regresoIdle: sequence([
+        finalFrame("tele", "tele_base_01.png")
+      ], [500])
     },
     interaction: {
       replayable: true,
@@ -154,6 +229,7 @@ export const OBJECTS_CONFIG = [
       content: contentImage("tele", "Reír y jugar contigo")
     }
   },
+
   {
     id: "marco",
     label: "Marco",
@@ -161,11 +237,32 @@ export const OBJECTS_CONFIG = [
     elementId: "object-marco",
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
-      idle: sequence(numberedFrames("marco", "idle", "idle", 1), [1000], { loop: true }),
-      atencion: sequence(numberedFrames("marco", "atencion", "atencion", 3), [140, 140, 220]),
-      evento: sequence(numberedFrames("marco", "evento", "evento", 3), [180, 180, 470]),
-      guiando: sequence(numberedFrames("marco", "guiando", "guiando", 2), [220, 430]),
-      regresoIdle: sequence(numberedFrames("marco", "regreso_idle", "regreso_idle", 2), [180, 260])
+      idle: sequence([
+        finalFrame("marco", "marco_base_01.png")
+      ], [1000], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("marco", "marco_base_01.png"),
+        finalFrame("marco", "marco_idle_02.png"),
+        finalFrame("marco", "marco_base_01.png"),
+        finalFrame("marco", "marco_idle_02.png"),
+        finalFrame("marco", "marco_base_01.png")
+      ], [220, 140, 240, 140, 750]),
+
+      evento: sequence([
+        finalFrame("marco", "marco_base_01.png"),
+        finalFrame("marco", "marco_evento_02.png"),
+        finalFrame("marco", "marco_evento_03.png"),
+        finalFrame("marco", "marco_evento_04.png"),
+        finalFrame("marco", "marco_evento_05.png"),
+        finalFrame("marco", "marco_base_01.png")
+      ], [220, 1250, 1250, 1250, 1450, 550]),
+
+      guiando: emptySequence(),
+
+      regresoIdle: sequence([
+        finalFrame("marco", "marco_base_01.png")
+      ], [350])
     },
     interaction: {
       replayable: true,
@@ -179,6 +276,53 @@ export const OBJECTS_CONFIG = [
       }
     }
   },
+
+  {
+    id: "calendario",
+    label: "Calendario",
+    category: OBJECT_CATEGORY.STORY,
+    elementId: "object-calendario",
+    hitTest: { mode: "alpha", alphaThreshold: 18 },
+    animations: {
+      idle: sequence([
+        finalFrame("calendario", "calendario_base_01.png"),
+        finalFrame("calendario", "calendario_idle_02.png"),
+        finalFrame("calendario", "calendario_base_01.png")
+      ], [15100, 230, 1700], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("calendario", "calendario_base_01.png"),
+        finalFrame("calendario", "calendario_idle_02.png"),
+        finalFrame("calendario", "calendario_atencion_02.png"),
+        finalFrame("calendario", "calendario_atencion_03.png"),
+        finalFrame("calendario", "calendario_atencion_02.png"),
+        finalFrame("calendario", "calendario_idle_02.png"),
+        finalFrame("calendario", "calendario_base_01.png")
+      ], [180, 200, 230, 550, 230, 200, 750]),
+
+      evento: sequence([
+        finalFrame("calendario", "calendario_base_01.png"),
+        finalFrame("calendario", "calendario_idle_02.png"),
+        finalFrame("calendario", "calendario_atencion_02.png"),
+        finalFrame("calendario", "calendario_atencion_03.png"),
+        finalFrame("calendario", "calendario_atencion_02.png"),
+        finalFrame("calendario", "calendario_idle_02.png"),
+        finalFrame("calendario", "calendario_base_01.png")
+      ], [200, 220, 280, 900, 280, 220, 550]),
+
+      guiando: emptySequence(),
+
+      regresoIdle: sequence([
+        finalFrame("calendario", "calendario_base_01.png")
+      ], [350])
+    },
+    interaction: {
+      replayable: true,
+      effect: "confetti",
+      content: contentImage("calendario", "Nuestra fecha especial")
+    }
+  },
+
   {
     id: "pollitos",
     label: "Pollitos",
@@ -186,11 +330,42 @@ export const OBJECTS_CONFIG = [
     elementId: "object-pollitos",
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
-      idle: sequence(numberedFrames("pollitos", "idle", "idle", 2), [650, 650], { loop: true }),
-      atencion: sequence(numberedFrames("pollitos", "atencion", "atencion", 3), [140, 140, 220]),
-      evento: sequence(numberedFrames("pollitos", "evento", "evento", 4), [170, 170, 190, 520]),
-      guiando: sequence(numberedFrames("pollitos", "guiando", "guiando", 2), [230, 460]),
-      regresoIdle: sequence(numberedFrames("pollitos", "regreso_idle", "regreso_idle", 3), [170, 170, 260])
+      idle: sequence([
+        finalFrame("pollitos", "pollito_base_01.png"),
+        finalFrame("pollitos", "pollito_idle_02.png"),
+        finalFrame("pollitos", "pollito_base_01.png")
+      ], [10600, 250, 1700], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("pollitos", "pollito_base_01.png"),
+        finalFrame("pollitos", "pollito_atencion_02.png"),
+        finalFrame("pollitos", "pollito_atencion_03.png"),
+        finalFrame("pollitos", "pollito_atencion_04.png"),
+        finalFrame("pollitos", "pollito_atencion_03.png"),
+        finalFrame("pollitos", "pollito_atencion_02.png"),
+        finalFrame("pollitos", "pollito_base_01.png")
+      ], [180, 220, 280, 850, 280, 220, 750]),
+
+      evento: sequence([
+        finalFrame("pollitos", "pollito_base_01.png"),
+        finalFrame("pollitos", "pollito_evento_02.png"),
+        finalFrame("pollitos", "pollito_evento_03.png"),
+        finalFrame("pollitos", "pollito_evento_04.png"),
+        finalFrame("pollitos", "pollito_evento_05.png"),
+        finalFrame("pollitos", "pollito_evento_06.png"),
+        finalFrame("pollitos", "pollito_evento_07.png"),
+        finalFrame("pollitos", "pollito_evento_08.png")
+      ], [180, 220, 220, 240, 260, 300, 420, 950]),
+
+      guiando: sequence([
+        finalFrame("pollitos", "pollito_evento_08.png"),
+        finalFrame("pollitos", "pollito_final_02.png"),
+        finalFrame("pollitos", "pollito_base_01.png")
+      ], [350, 950, 550]),
+
+      regresoIdle: sequence([
+        finalFrame("pollitos", "pollito_base_01.png")
+      ], [350])
     },
     interaction: {
       replayable: true,
@@ -198,6 +373,7 @@ export const OBJECTS_CONFIG = [
       content: contentImage("pollitos", "POYOOO 💛")
     }
   },
+
   {
     id: "sobre",
     label: "Sobre",
@@ -205,11 +381,40 @@ export const OBJECTS_CONFIG = [
     elementId: "object-sobre",
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     animations: {
-      idle: sequence(numberedFrames("sobre", "idle", "idle", 1), [1000], { loop: true }),
-      atencion: sequence(numberedFrames("sobre", "atencion", "atencion", 4), [90, 90, 90, 150]),
-      evento: sequence(numberedFrames("sobre", "evento", "evento", 4), [150, 170, 190, 550]),
-      guiando: sequence([], [], { holdLastFrame: true }),
-      regresoIdle: sequence(numberedFrames("sobre", "regreso_idle", "regreso_idle", 3), [170, 170, 280])
+      idle: sequence([
+        finalFrame("sobre", "sobre_base_01.png"),
+        finalFrame("sobre", "sobre_idle_02.png"),
+        finalFrame("sobre", "sobre_base_01.png")
+      ], [12600, 230, 1800], { loop: true }),
+
+      atencion: sequence([
+        finalFrame("sobre", "sobre_base_01.png"),
+        finalFrame("sobre", "sobre_idle_02.png"),
+        finalFrame("sobre", "sobre_atencion_02.png"),
+        finalFrame("sobre", "sobre_atencion_03.png"),
+        finalFrame("sobre", "sobre_atencion_04.png"),
+        finalFrame("sobre", "sobre_atencion_05.png"),
+        finalFrame("sobre", "sobre_atencion_04.png"),
+        finalFrame("sobre", "sobre_atencion_03.png"),
+        finalFrame("sobre", "sobre_atencion_02.png"),
+        finalFrame("sobre", "sobre_idle_02.png"),
+        finalFrame("sobre", "sobre_base_01.png")
+      ], [170, 170, 190, 210, 230, 340, 230, 210, 190, 170, 750]),
+
+      evento: sequence([
+        finalFrame("sobre", "sobre_base_01.png"),
+        finalFrame("sobre", "sobre_evento_02.png"),
+        finalFrame("sobre", "sobre_evento_03.png"),
+        finalFrame("sobre", "sobre_evento_04.png"),
+        finalFrame("sobre", "sobre_evento_05.png"),
+        finalFrame("sobre", "sobre_evento_06.png")
+      ], [250, 320, 460, 620, 850, 1300]),
+
+      guiando: emptySequence(),
+
+      regresoIdle: sequence([
+        finalFrame("sobre", "sobre_base_01.png")
+      ], [500])
     },
     interaction: {
       replayable: true,
@@ -218,7 +423,8 @@ export const OBJECTS_CONFIG = [
     }
   },
 
-  // OBJETOS AMBIENTALES: no pertenecen a STORY_ORDER.
+  // OBJETOS AMBIENTALES. Perrito y planta conservan por ahora
+  // los frames de muestra; después se cambian por tus dibujos finales.
   {
     id: "planta",
     label: "Planta",
@@ -243,6 +449,7 @@ export const OBJECTS_CONFIG = [
       content: null
     }
   },
+
   {
     id: "perrito",
     label: "Perrito",
@@ -273,6 +480,7 @@ export const OBJECTS_CONFIG = [
       }
     }
   },
+
   {
     id: "tocadiscos",
     label: "Tocadiscos",
@@ -281,7 +489,8 @@ export const OBJECTS_CONFIG = [
     hitTest: { mode: "alpha", alphaThreshold: 18 },
     ambient: {
       mode: "persistentAudio",
-      autoEnabled: false
+      autoEnabled: false,
+      oneWay: true
     },
     audio: {
       src: "./assets/sonidos/tocadiscos_demo.wav",
@@ -289,13 +498,40 @@ export const OBJECTS_CONFIG = [
       volume: 0.28
     },
     animations: {
-      idle: sequence(numberedFrames("tocadiscos", "idle", "idle", 1), [1000], { loop: true }),
-      evento: sequence(numberedFrames("tocadiscos", "evento", "evento", 3), [180, 200, 360]),
-      activo: sequence(numberedFrames("tocadiscos", "activo", "activo", 2), [260, 260], { loop: true }),
-      regresoIdle: sequence(numberedFrames("tocadiscos", "regreso_idle", "regreso_idle", 3), [180, 180, 300])
+      // Antes del primer clic: permanece quieto y cada pocos segundos
+      // reproduce el destello de atención.
+      idle: sequence([
+        finalFrame("tocadiscos", "disco_base_01.png"),
+        finalFrame("tocadiscos", "disco_atencion_02.png"),
+        finalFrame("tocadiscos", "disco_atencion_03.png"),
+        finalFrame("tocadiscos", "disco_atencion_04.png"),
+        finalFrame("tocadiscos", "disco_base_01.png")
+      ], [4800, 180, 180, 330, 4200], { loop: true }),
+
+      evento: sequence([
+        finalFrame("tocadiscos", "disco_base_01.png"),
+        finalFrame("tocadiscos", "disco_evento_02.png"),
+        finalFrame("tocadiscos", "disco_evento_03.png"),
+        finalFrame("tocadiscos", "disco_evento_04.png"),
+        finalFrame("tocadiscos", "disco_evento_05.png"),
+        finalFrame("tocadiscos", "disco_evento_06.png")
+      ], [220, 190, 190, 190, 190, 300]),
+
+      // Después del primer clic, el disco queda girando siempre.
+      activo: sequence([
+        finalFrame("tocadiscos", "disco_evento_02.png"),
+        finalFrame("tocadiscos", "disco_evento_03.png"),
+        finalFrame("tocadiscos", "disco_evento_04.png"),
+        finalFrame("tocadiscos", "disco_evento_05.png"),
+        finalFrame("tocadiscos", "disco_evento_06.png")
+      ], [190, 190, 190, 190, 190], { loop: true }),
+
+      regresoIdle: sequence([
+        finalFrame("tocadiscos", "disco_base_01.png")
+      ], [350])
     },
     interaction: {
-      replayable: true,
+      replayable: false,
       effect: null,
       content: null
     }

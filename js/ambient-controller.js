@@ -17,7 +17,6 @@ export class AmbientController {
     this.audioController = audioController;
     this.runtimeLock = runtimeLock;
     this.storyController = storyController;
-
     this.autoTimer = null;
     this.autoObjectId = null;
     this.autoPaused = false;
@@ -58,7 +57,6 @@ export class AmbientController {
   scheduleAuto() {
     clearTimeout(this.autoTimer);
     this.autoTimer = null;
-
     if (this.autoPaused || document.hidden) return;
 
     const candidates = [...this.objects.values()].filter(
@@ -147,6 +145,12 @@ export class AmbientController {
   }
 
   async togglePersistentObject(object) {
+    const currentState = this.persistentStates.get(object.id) ?? "stopped";
+
+    // El tocadiscos final es de una sola activación:
+    // una vez encendido, no vuelve a la animación de atención.
+    if (currentState === "playing" && object.ambient?.oneWay) return;
+
     const owner = `persistent:${object.id}`;
     if (!this.runtimeLock.acquire(owner)) return;
 
@@ -154,8 +158,6 @@ export class AmbientController {
     this.pauseAuto();
 
     try {
-      const currentState = this.persistentStates.get(object.id) ?? "stopped";
-
       if (currentState === "stopped") {
         this.persistentStates.set(object.id, "starting");
         await this.animationEngine.play(object.id, "evento");
