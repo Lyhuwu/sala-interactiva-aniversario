@@ -425,9 +425,21 @@ export const OBJECTS_CONFIG = [
       ], [500])
     },
     interaction: {
-      replayable: true,
-      effect: "hearts",
-      content: contentImage("sobre", "Mi carta para ti")
+  replayable: true,
+  effect: "hearts",
+  content: {
+    type: "letter-pages",
+    title: "Mi carta para ti",
+    pages: [
+      "./assets/interfaz/cartas/carta_sobre_01.png",
+      "./assets/interfaz/cartas/carta_sobre_02.png",
+      "./assets/interfaz/cartas/carta_sobre_03.png",
+      "./assets/interfaz/cartas/carta_sobre_04.png",
+      "./assets/interfaz/cartas/carta_sobre_05.png"
+    ],
+    text: "",
+    closeOnBackdrop: false
+  }
     }
   },
 
