@@ -161,6 +161,7 @@ export class AmbientController {
     try {
       if (currentState === "stopped") {
         this.persistentStates.set(object.id, "starting");
+        element?.classList.add("is-playing");
         await this.animationEngine.play(object.id, "evento");
         await this.audioController.play(object.id);
         this.animationEngine.startLoop(object.id, "activo");
