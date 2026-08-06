@@ -174,9 +174,17 @@ export class StoryController {
   }
 
   async handleClick(objectId) {
-    if (this.runtimeLock.isLocked) return;
+  if (this.runtimeLock.isLocked) return;
 
-    this.ambientController?.interruptAuto();
+  if (!this.storyUnlocked) {
+    await this.modalController.showToast(
+      "Primero toca el tocadiscos para comenzar 🎶",
+      1700
+    );
+    return;
+  }
+
+  this.ambientController?.interruptAuto();
 
     if (this.completedObjects.has(objectId)) {
       await this.replayCompletedObject(objectId);
