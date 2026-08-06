@@ -449,18 +449,40 @@ export const OBJECTS_CONFIG = [
       maxDelay: 30000
     },
     animations: {
-      idle: sequence(numberedFrames("planta", "idle", "idle", 1), [1000], { loop: true }),
-      ambiente: sequence(numberedFrames("planta", "ambiente", "ambiente", 3), [220, 220, 340]),
-      evento: sequence(numberedFrames("planta", "evento", "evento", 3), [180, 220, 450]),
-      regresoIdle: sequence(numberedFrames("planta", "regreso_idle", "regreso_idle", 2), [190, 260])
-    },
-    interaction: {
-      replayable: true,
-      effect: "hearts",
-      content: null
-    }
-  },
+  idle: sequence([
+    finalFrame("planta", "planta_base_01.png")
+  ], [1000], { loop: true }),
 
+  ambiente: sequence([
+    finalFrame("planta", "planta_base_01.png"),
+    finalFrame("planta", "planta_ambiente_02.png"),
+    finalFrame("planta", "planta_ambiente_03.png"),
+    finalFrame("planta", "planta_ambiente_04.png"),
+    finalFrame("planta", "planta_ambiente_05.png"),
+    finalFrame("planta", "planta_ambiente_04.png"),
+    finalFrame("planta", "planta_ambiente_03.png"),
+    finalFrame("planta", "planta_ambiente_02.png"),
+    finalFrame("planta", "planta_base_01.png")
+  ], [140, 190, 190, 210, 340, 210, 190, 190, 600]),
+
+  evento: sequence([
+    finalFrame("planta", "planta_base_01.png"),
+    finalFrame("planta", "planta_evento_02.png"),
+    finalFrame("planta", "planta_evento_03.png"),
+    finalFrame("planta", "planta_evento_04.png")
+  ], [160, 240, 280, 700]),
+
+  regresoIdle: sequence([
+    finalFrame("planta", "planta_evento_03.png"),
+    finalFrame("planta", "planta_evento_02.png"),
+    finalFrame("planta", "planta_base_01.png")
+  ], [240, 240, 500])
+},
+interaction: {
+  replayable: true,
+  effect: null,
+  content: null
+},
   {
     id: "perrito",
     label: "Perrito",
