@@ -504,22 +504,51 @@ interaction: {
       maxDelay: 28000
     },
     animations: {
-      idle: sequence(numberedFrames("perrito", "idle", "idle", 2), [750, 750], { loop: true }),
-      ambiente: sequence(numberedFrames("perrito", "ambiente", "ambiente", 3), [180, 180, 350]),
-      evento: sequence(numberedFrames("perrito", "evento", "evento", 4), [150, 150, 180, 450]),
-      regresoIdle: sequence(numberedFrames("perrito", "regreso_idle", "regreso_idle", 2), [180, 280])
-    },
-    interaction: {
-      replayable: true,
-      effect: "hearts",
-      content: {
-        type: "dialogue",
-        title: "Guau 💕",
-        image: null,
-        text: "Este objeto es libre: puede tocarse sin cambiar el recorrido principal.",
-        closeOnBackdrop: true
-      }
-    }
+  idle: sequence([
+    finalFrame("perrito", "perrito_base_01.png"),
+    finalFrame("perrito", "perrito_idle_02.png"),
+    finalFrame("perrito", "perrito_base_01.png")
+  ], [7200, 200, 1500], { loop: true }),
+
+  ambiente: sequence([
+    finalFrame("perrito", "perrito_base_01.png"),
+    finalFrame("perrito", "perrito_idle_02.png"),
+    finalFrame("perrito", "perrito_ambiente_02.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_04.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_02.png"),
+    finalFrame("perrito", "perrito_idle_02.png"),
+    finalFrame("perrito", "perrito_base_01.png")
+  ], [160, 180, 230, 270, 750, 270, 230, 180, 650]),
+
+  evento: sequence([
+    finalFrame("perrito", "perrito_base_01.png"),
+    finalFrame("perrito", "perrito_idle_02.png"),
+    finalFrame("perrito", "perrito_ambiente_02.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_04.png")
+  ], [160, 190, 250, 300, 1000]),
+
+  regresoIdle: sequence([
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_02.png"),
+    finalFrame("perrito", "perrito_idle_02.png"),
+    finalFrame("perrito", "perrito_base_01.png")
+  ], [260, 230, 190, 550])
+},
+
+interaction: {
+  replayable: true,
+  effect: null,
+  content: {
+    type: "dialogue",
+    title: "Una serie que me hace sonreír 🐶",
+    image: null,
+    text: "Aquí puedes escribir el mensaje que quieras mostrar cuando toque el perrito.",
+    closeOnBackdrop: false
+  }
+}
   },
 
   {
