@@ -504,7 +504,7 @@ button {
    TOCADISCOS: primera pista obligatoria
    ========================================================= */
 
-html:not(.debug-mode):not(.story-unlocked)
+html.experience-started:not(.debug-mode):not(.story-unlocked)
 #object-tocadiscos:not(.is-playing) {
   animation: auraTocadiscosInicial 2400ms ease-in-out infinite;
   will-change: filter;
