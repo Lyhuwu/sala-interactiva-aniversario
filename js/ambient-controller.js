@@ -146,6 +146,7 @@ export class AmbientController {
 
   async togglePersistentObject(object) {
     const currentState = this.persistentStates.get(object.id) ?? "stopped";
+    const element = this.elements.get(object.id);
 
     // El tocadiscos final es de una sola activación:
     // una vez encendido, no vuelve a la animación de atención.
