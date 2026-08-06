@@ -478,13 +478,10 @@ export const OBJECTS_CONFIG = [
 interaction: {
   replayable: true,
   effect: null,
-  content: {
-    type: "dialogue",
-    title: "Nuestro amor también crece 🌱",
-    image: null,
-    text: "Como esta plantita, quiero seguir creciendo contigo, cuidándonos y floreciendo juntas.",
-    closeOnBackdrop: false
-  }
+  content: contentImage(
+    "planta",
+    "Nuestro amor también crece 🌱"
+  )
 }
 },
 
