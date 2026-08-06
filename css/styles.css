@@ -500,14 +500,52 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* Aura ligera para todos los objetos del recorrido cuando llaman la atención */
-#object-pinwis[data-status="attention"],
-#object-pajaritos[data-status="attention"],
-#object-tele[data-status="attention"],
-#object-marco[data-status="attention"],
-#object-calendario[data-status="attention"],
-#object-pollitos[data-status="attention"],
-#object-sobre[data-status="attention"] {
+/* =========================================================
+   TOCADISCOS: primera pista obligatoria
+   ========================================================= */
+
+html:not(.debug-mode):not(.story-unlocked)
+#object-tocadiscos:not(.is-playing) {
+  animation: auraTocadiscosInicial 2400ms ease-in-out infinite;
+  will-change: filter;
+}
+
+@keyframes auraTocadiscosInicial {
+  0%,
+  30%,
+  100% {
+    filter:
+      drop-shadow(0 0 3px rgba(255, 242, 170, 0.15))
+      drop-shadow(0 0 8px rgba(255, 143, 200, 0.10));
+  }
+
+  52% {
+    filter:
+      drop-shadow(0 0 10px rgba(255, 252, 205, 0.95))
+      drop-shadow(0 0 25px rgba(255, 221, 103, 0.85))
+      drop-shadow(0 0 48px rgba(255, 112, 194, 0.72))
+      brightness(1.08);
+  }
+
+  67% {
+    filter:
+      drop-shadow(0 0 7px rgba(255, 246, 184, 0.55))
+      drop-shadow(0 0 20px rgba(255, 137, 203, 0.40));
+  }
+}
+
+
+/* =========================================================
+   RECORRIDO: aura suave después de encender la música
+   ========================================================= */
+
+html.story-unlocked #object-pinwis[data-status="attention"],
+html.story-unlocked #object-pajaritos[data-status="attention"],
+html.story-unlocked #object-tele[data-status="attention"],
+html.story-unlocked #object-marco[data-status="attention"],
+html.story-unlocked #object-calendario[data-status="attention"],
+html.story-unlocked #object-pollitos[data-status="attention"],
+html.story-unlocked #object-sobre[data-status="attention"] {
   animation: auraAtencionSuave 900ms ease-in-out infinite;
   will-change: filter;
 }
@@ -516,43 +554,15 @@ button {
   0%,
   100% {
     filter:
-      drop-shadow(0 0 4px rgba(255, 244, 170, 0.28))
-      drop-shadow(0 0 10px rgba(255, 160, 210, 0.18));
+      drop-shadow(0 0 4px rgba(255, 244, 170, 0.25))
+      drop-shadow(0 0 10px rgba(255, 160, 210, 0.16));
   }
 
   50% {
     filter:
-      drop-shadow(0 0 8px rgba(255, 247, 190, 0.70))
-      drop-shadow(0 0 18px rgba(255, 210, 110, 0.55))
+      drop-shadow(0 0 8px rgba(255, 249, 195, 0.72))
+      drop-shadow(0 0 18px rgba(255, 215, 115, 0.55))
       drop-shadow(0 0 30px rgba(255, 126, 200, 0.42))
       brightness(1.04);
-  }
-}
-/* Aura ocasional del tocadiscos antes de encenderlo */
-html:not(.debug-mode) #object-tocadiscos:not(.is-playing) {
-  animation: auraTocadiscos 6s ease-in-out infinite;
-  will-change: filter;
-}
-
-@keyframes auraTocadiscos {
-  0%,
-  55%,
-  100% {
-    filter: none;
-  }
-
-  68%,
-  86% {
-    filter:
-      drop-shadow(0 0 12px rgba(255, 247, 171, 0.75))
-      drop-shadow(0 0 30px rgba(255, 126, 200, 0.65));
-  }
-
-  77% {
-    filter:
-      drop-shadow(0 0 15px rgba(255, 255, 210, 1))
-      drop-shadow(0 0 38px rgba(255, 224, 104, 1))
-      drop-shadow(0 0 68px rgba(255, 92, 190, 0.95))
-      brightness(1.1);
   }
 }
