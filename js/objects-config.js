@@ -563,10 +563,16 @@ interaction: {
       oneWay: true
     },
     audio: {
-      src: "./assets/sonidos/tocadiscos_demo.wav",
-      loop: true,
-      volume: 0.28
-    },
+  tracks: [
+    "./assets/sonidos/cancion_01.mp3",
+    "./assets/sonidos/cancion_02.mp3",
+    "./assets/sonidos/cancion_03.mp3",
+    "./assets/sonidos/cancion_04.mp3"
+  ],
+  shuffle: true,
+  loopPlaylist: true,
+  volume: 0.28
+},
     animations: {
       // Antes del primer clic: permanece quieto y cada pocos segundos
       // reproduce el destello de atención.
