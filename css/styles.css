@@ -956,3 +956,96 @@ html.debug-mode .intro-screen {
     transition-duration: 1ms;
   }
 }
+/* =========================================================
+   NAVEGACIÓN DE LA CARTA DEL SOBRE
+   ========================================================= */
+
+.modal-pages-nav {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(69, 51, 72, 0.14);
+}
+
+.modal-pages-nav[hidden] {
+  display: none;
+}
+
+.modal-page-button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: #ead8e4;
+  color: #513b52;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+
+.modal-page-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.modal-page-button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.modal-page-previous {
+  justify-self: start;
+}
+
+.modal-page-next {
+  justify-self: end;
+  background: #e5c8d7;
+}
+
+.modal-page-counter {
+  min-width: 54px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #6b526a;
+}
+
+@media (max-width: 420px) {
+  .modal-pages-nav {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+  .modal-page-counter {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .modal-page-previous {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .modal-page-next {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .modal-page-button {
+    width: 100%;
+    padding-inline: 10px;
+    font-size: 0.86rem;
+  }
+}
