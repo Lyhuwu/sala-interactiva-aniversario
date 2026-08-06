@@ -29,6 +29,7 @@ export class StoryController {
     this.attentionTimer = null;
     this.attentionObjectId = null;
     this.ambientController = null;
+    this.storyUnlocked = false;
   }
 
   setAmbientController(controller) {
