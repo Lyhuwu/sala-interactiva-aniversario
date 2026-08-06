@@ -79,6 +79,53 @@ function updateLoading({ percentage, path }) {
       : "La sala está lista 💕";
 }
 
+function showIntro() {
+  if (debugMode) {
+    document.documentElement.classList.add("experience-started");
+    return;
+  }
+
+  /*
+    La sala ya está cargada detrás, pero queda bloqueada
+    mientras la portada esté visible.
+  */
+  sceneViewport.inert = true;
+  sceneViewport.setAttribute("aria-hidden", "true");
+
+  introScreen.hidden = false;
+
+  requestAnimationFrame(() => {
+    introScreen.classList.add("is-visible");
+    introEnter.focus();
+  });
+}
+
+function enterExperience() {
+  if (debugMode || introScreen.hidden) return;
+
+  introEnter.disabled = true;
+
+  /*
+    Desde este momento puede mostrarse el aura
+    inicial del tocadiscos.
+  */
+  document.documentElement.classList.add("experience-started");
+
+  /*
+    Vuelve a habilitar la habitación.
+  */
+  sceneViewport.inert = false;
+  sceneViewport.removeAttribute("aria-hidden");
+
+  introScreen.classList.remove("is-visible");
+
+  window.setTimeout(() => {
+    introScreen.hidden = true;
+    introEnter.disabled = false;
+  }, reducedMotion ? 10 : 620);
+}
+
+introEnter.addEventListener("click", enterExperience);
 function revealScene() {
   stage.hidden = false;
   app.setAttribute("aria-busy", "false");
