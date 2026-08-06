@@ -176,7 +176,6 @@ export class AmbientController {
 
   /* Ahora sí comienza el recorrido con Pinwi */
   this.storyController.unlockStory(900);
-      }
       } else {
         this.persistentStates.set(object.id, "stopping");
         this.animationEngine.stop(object.id);
