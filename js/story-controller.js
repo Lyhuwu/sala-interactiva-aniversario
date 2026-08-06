@@ -125,8 +125,13 @@ export class StoryController {
   }
 
   scheduleAttention(delay = null) {
-    this.pauseAttention({ returnToIdle: false });
-    if (this.isComplete || document.hidden) return;
+  this.pauseAttention({ returnToIdle: false });
+
+  if (
+    !this.storyUnlocked ||
+    this.isComplete ||
+    document.hidden
+  ) return;
 
     const wait = delay ?? randomBetween(
       this.sceneConfig.attention.minDelay,
