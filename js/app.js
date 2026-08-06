@@ -130,8 +130,16 @@ function revealScene() {
   stage.hidden = false;
   app.setAttribute("aria-busy", "false");
 
+  /*
+    La portada se prepara antes de ocultar la carga,
+    para que nunca haya un instante donde aparezca
+    la habitación sin protección.
+  */
+  showIntro();
+
   requestAnimationFrame(() => {
     loadingScreen.classList.add("is-hidden");
+
     window.setTimeout(() => {
       loadingScreen.hidden = true;
     }, 380);
