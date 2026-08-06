@@ -160,12 +160,23 @@ export class AmbientController {
 
     try {
       if (currentState === "stopped") {
-        this.persistentStates.set(object.id, "starting");
-        element?.classList.add("is-playing");
-        await this.animationEngine.play(object.id, "evento");
-        await this.audioController.play(object.id);
-        this.animationEngine.startLoop(object.id, "activo");
-        this.persistentStates.set(object.id, "playing");
+  this.persistentStates.set(object.id, "starting");
+  element?.classList.add("is-playing");
+
+  await this.animationEngine.play(object.id, "evento");
+
+  const audioStarted = await this.audioController.play(object.id);
+
+  if (!audioStarted) {
+    throw new Error("No se pudo iniciar la música del tocadiscos.");
+  }
+
+  this.animationEngine.startLoop(object.id, "activo");
+  this.persistentStates.set(object.id, "playing");
+
+  /* Ahora sí comienza el recorrido con Pinwi */
+  this.storyController.unlockStory(900);
+      }
       } else {
         this.persistentStates.set(object.id, "stopping");
         this.animationEngine.stop(object.id);
