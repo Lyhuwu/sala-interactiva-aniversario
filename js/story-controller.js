@@ -35,6 +35,13 @@ export class StoryController {
   setAmbientController(controller) {
     this.ambientController = controller;
   }
+  unlockStory(delay = 900) {
+  if (this.storyUnlocked) return;
+
+  this.storyUnlocked = true;
+  document.documentElement.classList.add("story-unlocked");
+  this.scheduleAttention(delay);
+  }
 
   initialize() {
     this.restoreProgress();
