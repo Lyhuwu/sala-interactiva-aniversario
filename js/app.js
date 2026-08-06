@@ -27,6 +27,10 @@ const loadingMessage = document.getElementById("loading-message");
 const loadingPercentage = document.getElementById("loading-percentage");
 const effectsCanvas = document.getElementById("effects-layer");
 
+const sceneViewport = document.getElementById("scene-viewport");
+const introScreen = document.getElementById("intro-screen");
+const introEnter = document.getElementById("intro-enter");
+
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const debugMode = new URLSearchParams(window.location.search).get("debug") === "1";
 const elements = new Map();
