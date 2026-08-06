@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "logicalScene": {
+    "width": 1080,
+    "height": 1920
+  },
+  "positions": {
+    "pinwis": {
+      "x": 168,
+      "y": 292,
+      "width": 300,
+      "zIndex": 40
+    },
+    "pajaritos": {
+      "x": 287,
+      "y": 0,
+      "width": 580,
+      "zIndex": 35
+    },
+    "tele": {
+      "x": 76,
+      "y": 1035,
+      "width": 400,
+      "zIndex": 32
+    },
+    "marco": {
+      "x": 699,
+      "y": 602,
+      "width": 210,
+      "zIndex": 31
+    },
+    "calendario": {
+      "x": 823,
+      "y": 1587,
+      "width": 220,
+      "zIndex": 30
+    },
+    "pollitos": {
+      "x": 571,
+      "y": 145,
+      "width": 455,
+      "zIndex": 42
+    },
+    "sobre": {
+      "x": 809,
+      "y": 1688,
+      "width": 255,
+      "zIndex": 45
+    },
+    "planta": {
+      "x": 199,
+      "y": 820,
+      "width": 285,
+      "zIndex": 25
+    },
+    "perrito": {
+      "x": 0,
+      "y": 472,
+      "width": 235,
+      "zIndex": 41
+    },
+    "tocadiscos": {
+      "x": 32,
+      "y": 1592,
+      "width": 240,
+      "zIndex": 36
+    }
+  }
+}
