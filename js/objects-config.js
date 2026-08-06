@@ -535,13 +535,10 @@ interaction: {
 interaction: {
   replayable: true,
   effect: null,
-  content: {
-    type: "dialogue",
-    title: "Una serie que me hace sonreír 🐶",
-    image: null,
-    text: "Aquí puedes escribir el mensaje que quieras mostrar cuando toque el perrito.",
-    closeOnBackdrop: false
-  }
+  content: contentImage(
+    "perrito",
+    "Una serie que me hace sonreír 🐶"
+  )
 }
   },
 
