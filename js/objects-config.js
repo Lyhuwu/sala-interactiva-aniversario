@@ -504,34 +504,34 @@ interaction: {
       maxDelay: 28000
     },
     animations: {
-  /* Normalmente tiene los ojos abiertos y parpadea rápidamente */
+  /* Ojos abiertos normalmente y parpadeo rápido */
   idle: sequence([
-    finalFrame("perrito", "perrito_evento_03.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png"),
     finalFrame("perrito", "perrito_idle_02.png"),
-    finalFrame("perrito", "perrito_evento_03.png")
+    finalFrame("perrito", "perrito_ambiente_03.png")
   ], [7200, 150, 1500], { loop: true }),
 
-  /* Gesto automático ocasional, independiente de la historia */
+  /* Parpadeo doble ocasional */
   ambiente: sequence([
-    finalFrame("perrito", "perrito_evento_03.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png"),
     finalFrame("perrito", "perrito_idle_02.png"),
     finalFrame("perrito", "perrito_base_01.png"),
-    finalFrame("perrito", "perrito_evento_03.png")
+    finalFrame("perrito", "perrito_ambiente_03.png")
   ], [180, 110, 110, 700]),
 
   /* Reacción cuando le dan clic */
   evento: sequence([
-    finalFrame("perrito", "perrito_evento_03.png"),
-    finalFrame("perrito", "perrito_evento_02.png"),
-    finalFrame("perrito", "perrito_evento_03.png"),
-    finalFrame("perrito", "perrito_evento_04.png")
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_02.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_04.png")
   ], [180, 260, 280, 900]),
 
-  /* Después de cerrar la carta vuelve a la mirada normal */
+  /* Regresa a la mirada normal */
   regresoIdle: sequence([
-    finalFrame("perrito", "perrito_evento_03.png"),
-    finalFrame("perrito", "perrito_evento_02.png"),
-    finalFrame("perrito", "perrito_evento_03.png")
+    finalFrame("perrito", "perrito_ambiente_03.png"),
+    finalFrame("perrito", "perrito_ambiente_02.png"),
+    finalFrame("perrito", "perrito_ambiente_03.png")
   ], [220, 220, 500])
 },
 
