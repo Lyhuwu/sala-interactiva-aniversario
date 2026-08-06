@@ -187,6 +187,7 @@ export class AmbientController {
       }
     } catch (error) {
       console.error(`[AmbientController] Error al cambiar ${object.id}.`, error);
+    element?.classList.remove("is-playing");
       this.audioController.pause(object.id, true);
       this.animationEngine.showIdle(object.id);
       this.persistentStates.set(object.id, "stopped");
