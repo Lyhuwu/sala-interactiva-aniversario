@@ -500,29 +500,32 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* Aura fuerte para marco, calendario y sobre */
+/* Aura ligera para todos los objetos del recorrido cuando llaman la atención */
+#object-pinwis[data-status="attention"],
+#object-pajaritos[data-status="attention"],
+#object-tele[data-status="attention"],
 #object-marco[data-status="attention"],
 #object-calendario[data-status="attention"],
+#object-pollitos[data-status="attention"],
 #object-sobre[data-status="attention"] {
-  animation: auraAtencion 750ms ease-in-out infinite;
+  animation: auraAtencionSuave 900ms ease-in-out infinite;
   will-change: filter;
 }
 
-@keyframes auraAtencion {
+@keyframes auraAtencionSuave {
   0%,
   100% {
     filter:
-      drop-shadow(0 0 8px rgba(255, 247, 171, 0.55))
-      drop-shadow(0 0 20px rgba(255, 126, 200, 0.42));
+      drop-shadow(0 0 4px rgba(255, 244, 170, 0.28))
+      drop-shadow(0 0 10px rgba(255, 160, 210, 0.18));
   }
 
   50% {
     filter:
-      drop-shadow(0 0 12px rgba(255, 255, 210, 1))
-      drop-shadow(0 0 30px rgba(255, 224, 104, 1))
-      drop-shadow(0 0 58px rgba(255, 92, 190, 0.95))
-      drop-shadow(0 0 90px rgba(255, 92, 190, 0.78))
-      brightness(1.12);
+      drop-shadow(0 0 8px rgba(255, 247, 190, 0.70))
+      drop-shadow(0 0 18px rgba(255, 210, 110, 0.55))
+      drop-shadow(0 0 30px rgba(255, 126, 200, 0.42))
+      brightness(1.04);
   }
 }
 /* Aura ocasional del tocadiscos antes de encenderlo */
