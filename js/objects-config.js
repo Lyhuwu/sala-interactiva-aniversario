@@ -276,15 +276,12 @@ export const OBJECTS_CONFIG = [
       ], [350])
     },
     interaction: {
-      replayable: true,
-      effect: "hearts",
-      content: {
-        type: "photo",
-        title: "Un recuerdo nuestro",
-        image: "./assets/interfaz/fotos/foto_marco.png",
-        text: "Sustituye esta imagen por la fotografía que quieras mostrar.",
-        closeOnBackdrop: false
-      }
+  replayable: true,
+  effect: "hearts",
+  content: contentImage(
+    "marco",
+    "Un recuerdo nuestro"
+  )
     }
   },
 
