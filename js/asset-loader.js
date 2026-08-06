@@ -10,18 +10,31 @@ export class AssetLoader {
   }
 
   collect(config, objects) {
-    const paths = new Set([config.background]);
+  collect(config, objects) {
+  const paths = new Set([config.background]);
 
-    for (const object of objects) {
-      for (const animation of Object.values(object.animations ?? {})) {
-        for (const frame of animation.frames ?? []) paths.add(frame);
+  for (const object of objects) {
+    for (const animation of Object.values(object.animations ?? {})) {
+      for (const frame of animation.frames ?? []) {
+        paths.add(frame);
       }
-      const contentImage = object.interaction?.content?.image;
-      if (contentImage) paths.add(contentImage);
     }
 
-    return [...paths];
+    const content = object.interaction?.content;
+
+    if (content?.image) {
+      paths.add(content.image);
+    }
+
+    for (const page of content?.pages ?? []) {
+      if (page) {
+        paths.add(page);
+      }
+    }
   }
+
+  return [...paths];
+}
 
   async loadAll(paths, onProgress = () => {}) {
     let finished = 0;
