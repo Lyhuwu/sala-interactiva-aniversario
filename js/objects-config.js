@@ -486,11 +486,13 @@ interaction: {
     title: "Nuestro amor también crece 🌱",
     image: null,
     text: "Como esta plantita, quiero seguir creciendo contigo, cuidándonos y floreciendo juntas.",
-    closeOnBackdrop: false
+        closeOnBackdrop: false
   }
+}
 },
-  {
-    id: "perrito",
+
+{
+  id: "perrito",
     label: "Perrito",
     category: OBJECT_CATEGORY.AMBIENT,
     elementId: "object-perrito",
