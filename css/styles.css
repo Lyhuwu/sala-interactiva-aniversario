@@ -525,3 +525,31 @@ button {
       brightness(1.12);
   }
 }
+/* Aura ocasional del tocadiscos antes de encenderlo */
+html:not(.debug-mode) #object-tocadiscos:not(.is-playing) {
+  animation: auraTocadiscos 6s ease-in-out infinite;
+  will-change: filter;
+}
+
+@keyframes auraTocadiscos {
+  0%,
+  55%,
+  100% {
+    filter: none;
+  }
+
+  68%,
+  86% {
+    filter:
+      drop-shadow(0 0 12px rgba(255, 247, 171, 0.75))
+      drop-shadow(0 0 30px rgba(255, 126, 200, 0.65));
+  }
+
+  77% {
+    filter:
+      drop-shadow(0 0 15px rgba(255, 255, 210, 1))
+      drop-shadow(0 0 38px rgba(255, 224, 104, 1))
+      drop-shadow(0 0 68px rgba(255, 92, 190, 0.95))
+      brightness(1.1);
+  }
+}
