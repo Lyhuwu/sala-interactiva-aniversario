@@ -10,7 +10,6 @@ export class AssetLoader {
   }
 
   collect(config, objects) {
-  collect(config, objects) {
   const paths = new Set([config.background]);
 
   for (const object of objects) {
