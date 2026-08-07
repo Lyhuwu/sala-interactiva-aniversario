@@ -128,7 +128,7 @@ export const OBJECTS_CONFIG = [
     interaction: {
       replayable: true,
       effect: "hearts",
-      content: contentImage("pinwis", "Para ti, mi amor")
+      content: contentImage("pinwis", "Juntitas siempre")
     }
   },
 
@@ -181,7 +181,7 @@ export const OBJECTS_CONFIG = [
   replayable: true,
   effect: "hearts",
   handoffAttentionTo: "tele",
-  content: contentImage("pajaritos", "Una pequeña carta")
+  content: contentImage("pajaritos", "Nosotras esas, esos, ellos, ellas, todo")
     }
   },
 
@@ -280,7 +280,7 @@ export const OBJECTS_CONFIG = [
   effect: "hearts",
   content: contentImage(
     "marco",
-    "Un recuerdo nuestro"
+    "Ayayayay"
   )
     }
   },
@@ -429,7 +429,7 @@ export const OBJECTS_CONFIG = [
   effect: "hearts",
   content: {
     type: "letter-pages",
-    title: "Mi carta para ti",
+    title: "Para mi amor",
     pages: [
       "./assets/interfaz/cartas/carta_sobre_01.png",
       "./assets/interfaz/cartas/carta_sobre_02.png",
