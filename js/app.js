@@ -98,17 +98,13 @@ function resizeScene() {
   Actualiza el porcentaje y el texto de carga.
 */
 function updateLoading({ percentage, path }) {
-  loadingBar.style.width = `${percentage}%`;
-  loadingPercentage.textContent = `${percentage}%`;
-
-  const name = path.split("/").pop();
-
-  loadingMessage.textContent =
-    percentage < 100
-      ? `Preparando ${name}…`
-      : debugMode
+function updateLoading({ percentage }) {
+  if (percentage === 100) {
+    loadingMessage.textContent =
+      debugMode
         ? "Modo acomodo listo"
-        : "La sala está lista 💕";
+        : "Listo ♡";
+  }
 }
 
 /*
