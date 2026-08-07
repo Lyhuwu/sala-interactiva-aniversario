@@ -1049,3 +1049,28 @@ html.debug-mode .intro-screen {
     font-size: 0.86rem;
   }
 }
+/* Pantalla de carga sencilla, sin tarjeta ni información técnica */
+.loading-card {
+  width: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.loading-heart,
+.loading-track,
+.loading-percentage {
+  display: none;
+}
+
+#loading-message {
+  margin: 0;
+  color: #fff9ef;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
