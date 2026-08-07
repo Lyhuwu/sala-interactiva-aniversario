@@ -436,6 +436,7 @@ export const OBJECTS_CONFIG = [
       "./assets/interfaz/cartas/carta_sobre_03.png",
       "./assets/interfaz/cartas/carta_sobre_04.png",
       "./assets/interfaz/cartas/carta_sobre_05.png"
+      "./assets/interfaz/cartas/carta_sobre_06.png"
     ],
     text: "",
     closeOnBackdrop: false
