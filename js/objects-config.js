@@ -27,11 +27,11 @@ export const SCENE_CONFIG = Object.freeze({
     retryAfterWrongPath: 450
   },
   wrongPathMessages: [
-    "¡Altooo! Este todavía no es el camino. Sigue las pistas 💌",
-    "Casi, amor, pero esa sorpresa viene después 👀",
-    "Este guarda algo especial, pero primero sigue la pista que te está llamando 💕"
+    "Hijole mi corazón, por aqui no es. ajjajj Sigue las pistas, atención atención",
+    "Casi, casiii, casi pero no, esta sorpresa viene después 🥺😽",
+    "Aqui hay algo especial, pero primero sigue la pista que te está llamando okei???"
   ],
-  finalMessage: "Llegaste al final de este recorrido, amor 💗 Puedes volver a abrir todas las sorpresas cuando quieras."
+  finalMessage: "Llegaste al final de este mini recorrido, mi corazón 💗 Puedes volver a abrir todas las sorpresas cuando quieras."
 });
 
 export const STORY_ORDER = Object.freeze([
@@ -493,7 +493,7 @@ interaction: {
   effect: null,
   content: contentImage(
     "planta",
-    "Nuestro amor también crece 🌱"
+    "Nuestro amor también puede crecer 🌱"
   )
 }
 },
@@ -547,7 +547,7 @@ interaction: {
   effect: null,
   content: contentImage(
     "perrito",
-    "Una serie que me hace sonreír 🐶"
+    "Nuevas cositas por descubrir 😽"
   )
 }
   },
