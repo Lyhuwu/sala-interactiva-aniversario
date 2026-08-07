@@ -431,13 +431,13 @@ export const OBJECTS_CONFIG = [
     type: "letter-pages",
     title: "Para mi amor",
     pages: [
-      "./assets/interfaz/cartas/carta_sobre_01.png",
-      "./assets/interfaz/cartas/carta_sobre_02.png",
-      "./assets/interfaz/cartas/carta_sobre_03.png",
-      "./assets/interfaz/cartas/carta_sobre_04.png",
-      "./assets/interfaz/cartas/carta_sobre_05.png"
-      "./assets/interfaz/cartas/carta_sobre_06.png"
-    ],
+  "./assets/interfaz/cartas/carta_sobre_01.png",
+  "./assets/interfaz/cartas/carta_sobre_02.png",
+  "./assets/interfaz/cartas/carta_sobre_03.png",
+  "./assets/interfaz/cartas/carta_sobre_04.png",
+  "./assets/interfaz/cartas/carta_sobre_05.png",
+  "./assets/interfaz/cartas/carta_sobre_06.png"
+],
     text: "",
     closeOnBackdrop: false
   }
