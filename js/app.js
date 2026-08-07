@@ -97,7 +97,6 @@ function resizeScene() {
 /*
   Actualiza el porcentaje y el texto de carga.
 */
-function updateLoading({ percentage, path }) {
 function updateLoading({ percentage }) {
   if (percentage === 100) {
     loadingMessage.textContent =
